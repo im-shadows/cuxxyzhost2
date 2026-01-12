@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>CuxxyzHost</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- FONT RPG -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --neon:#00f7ff;
+  --neon2:#ff004c;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:'Orbitron', sans-serif;
+}
+body{
+  background:#000;
+  color:#fff;
+  overflow:hidden;
+}
+
+/* PARTIKEL */
+canvas{position:fixed;inset:0;z-index:-1}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 30px;
+}
+.logo{
+  font-size:22px;
+  color:var(--neon);
+  text-shadow:0 0 20px var(--neon);
+}
+
+/* MENU */
+.menu-btn{cursor:pointer}
+.menu-btn span{
+  display:block;
+  width:30px;
+  height:3px;
+  background:var(--neon);
+  margin:6px 0;
+  box-shadow:0 0 10px var(--neon);
+}
+.menu-box{
+  display:none;
+  position:absolute;
+  right:30px;
+  top:70px;
+  background:#020202;
+  border:1px solid var(--neon);
+}
+.menu-box a{
+  display:block;
+  padding:10px 16px;
+  color:#fff;
+  text-decoration:none;
+}
+.menu-box a:hover{background:#0a0a0a}
+
+/* MAIN */
+main{text-align:center;margin-top:80px}
+.badge{
+  display:inline-block;
+  padding:6px 14px;
+  border:1px solid var(--neon);
+  margin-bottom:16px;
+}
+h1{
+  font-size:32px;
+  color:var(--neon);
+  text-shadow:0 0 22px var(--neon);
+}
+.typing{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.85;
+}
+
+/* BUTTON */
+.buttons{
+  width:260px;
+  margin:40px auto;
+  display:flex;
+  flex-direction:column;
+  gap:16px;
+}
+.rpg-btn{
+  padding:14px;
+  background:transparent;
+  border:1px solid var(--neon);
+  color:#fff;
+  cursor:pointer;
+  position:relative;
+}
+.rpg-btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:2px solid transparent;
+  border-image:linear-gradient(90deg,var(--neon),var(--neon2),var(--neon)) 1;
+  animation:border 2s linear infinite;
+}
+@keyframes border{to{filter:hue-rotate(360deg)}}
+.rpg-btn:hover{
+  box-shadow:0 0 20px var(--neon);
+  transform:translateY(-3px);
+}
+.rpg-btn:active{transform:scale(.95)}
+
+/* FOOTER */
+footer{
+  font-size:11px;
+  opacity:.5;
+  margin-top:40px;
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<header>
+  <div class="logo">./CuxxyzHost</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<div class="menu-box" id="menu">
+  <a href="index.html">Home</a>
+  <a href="https://wa.me/6283128490718" target="_blank">WhatsApp</a>
+  <a href="https://t.me/cuxxyzhost" target="_blank">Telegram</a>
+</div>
+
+<main>
+  <div class="badge">$ "Welcome"</div>
+  <h1>the ./CuxxyzHost List</h1>
+  <div class="typing" id="typing"></div>
+
+  <div class="buttons">
+    <button class="rpg-btn" onclick="location.href='jasteb.html'">Jasteb</button>
+    <button class="rpg-btn" onclick="location.href='reseller.html'">Pt & Reseller</button>
+    <button class="rpg-btn" onclick="location.href='pterodactyl.html'">Pterodactyl</button>
+  </div>
+
+  <footer>© 2026 CuxxyzHost</footer>
+</main>
+
+<script>
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.display=m.style.display==="block"?"none":"block";
+}
+
+/* TYPING */
+const t=["Result murni 2026","Result masa kini"];
+let i=0,j=0,d=false;
+const e=document.getElementById("typing");
+setInterval(()=>{
+  e.textContent=t[i].slice(0,j);
+  if(!d){j++;if(j>t[i].length)d=true}
+  else{j--;if(j===0){d=false;i=(i+1)%t.length}}
+},120);
+
+/* PARTIKEL */
+const c=document.getElementById("bg"),x=c.getContext("2d");
+let w,h,p=[];
+function rs(){w=c.width=innerWidth;h=c.height=innerHeight}
+window.onresize=rs;rs();
+for(let i=0;i<90;i++)p.push({x:Math.random()*w,y:Math.random()*h,v:Math.random()+.3});
+(function an(){
+  x.clearRect(0,0,w,h);
+  p.forEach(o=>{o.y+=o.v;if(o.y>h)o.y=0;x.fillStyle="#00f7ff";x.fillRect(o.x,o.y,2,2)});
+  requestAnimationFrame(an);
+})();
+</script>
+
+</body>
+</html>
