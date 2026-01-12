@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>CuxxyzHost - Pterodactyl</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+:root{
+  --neon:#00f7ff;
+  --neon2:#ff004c;
+}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Consolas,monospace}
+body{background:#000;color:#fff;overflow:hidden}
+
+/* PARTIKEL */
+canvas{position:fixed;inset:0;z-index:-1}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:20px 30px;
+}
+.logo{
+  color:var(--neon);
+  font-size:22px;
+  text-shadow:0 0 14px var(--neon);
+}
+
+/* MENU */
+.menu-btn{cursor:pointer}
+.menu-btn span{
+  display:block;
+  width:30px;height:3px;
+  background:var(--neon);
+  margin:6px 0;
+  box-shadow:0 0 10px var(--neon);
+}
+.menu-box{
+  display:none;
+  position:absolute;
+  right:30px;
+  top:70px;
+  background:#020202;
+  border:1px solid var(--neon);
+}
+.menu-box a{
+  display:block;
+  padding:10px 16px;
+  color:#fff;
+  text-decoration:none;
+}
+.menu-box a:hover{background:#0a0a0a}
+
+/* MAIN */
+main{text-align:center;margin-top:60px}
+h1{
+  color:var(--neon);
+  font-size:30px;
+  text-shadow:0 0 18px var(--neon);
+}
+.sub{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.85;
+  line-height:1.6;
+}
+
+/* BOX */
+.box{
+  width:340px;
+  margin:40px auto;
+  padding:20px;
+  border:1px solid var(--neon);
+  box-shadow:0 0 20px #00f7ff22;
+}
+.box h3{
+  color:var(--neon2);
+  margin-bottom:16px;
+}
+
+/* FIELD */
+.field{text-align:left;margin-bottom:14px}
+.field label{font-size:13px;opacity:.8}
+.value{
+  margin-top:6px;
+  padding:8px;
+  background:#050505;
+  border:1px solid #222;
+}
+
+/* BUTTON */
+.buttons{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  margin-top:18px;
+}
+.rpg-btn{
+  padding:12px;
+  background:transparent;
+  border:1px solid var(--neon);
+  color:#fff;
+  cursor:pointer;
+  position:relative;
+  overflow:hidden;
+}
+.rpg-btn::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border:2px solid transparent;
+  border-image:linear-gradient(90deg,var(--neon),var(--neon2),var(--neon)) 1;
+  animation:border 2s linear infinite;
+}
+@keyframes border{to{filter:hue-rotate(360deg)}}
+.rpg-btn:hover{
+  box-shadow:0 0 18px var(--neon);
+  transform:translateY(-2px);
+}
+.rpg-btn:active{transform:scale(.95)}
+
+/* FOOTER */
+footer{
+  text-align:center;
+  font-size:11px;
+  opacity:.5;
+  margin-top:30px;
+}
+</style>
+</head>
+<body>
+
+<canvas id="bg"></canvas>
+
+<header>
+  <div class="logo">./CuxxyzHost</div>
+  <div class="menu-btn" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<div class="menu-box" id="menu">
+  <a href="index.html">Home</a>
+  <a href="https://wa.me/6283128490718" target="_blank">Saluran WA</a>
+  <a href="https://t.me/cuxxyzhost" target="_blank">Saluran Tele</a>
+</div>
+
+<main>
+  <h1>>_ Pterodactyl</h1>
+  <div class="sub">
+    #Anti delay ✅<br>
+    #Aman ✅<br>
+    #Di urus ✅
+  </div>
+
+  <div class="box">
+    <h3>$ ./Pterodactyl</h3>
+
+    <div class="field">
+      <label>_produk</label>
+      <select class="value" id="produk" onchange="setHarga(this)">
+        <option value="1000">1GB</option>
+        <option value="2000">2GB</option>
+        <option value="3000">3GB</option>
+        <option value="4000">4GB</option>
+        <option value="5000">5GB</option>
+        <option value="7000">Unli</option>
+        <option value="9000">Adp</option>
+        <option value="11000">Partner-panel</option>
+        <option value="13000">Tangan Kanan-panel</option>
+        <option value="15000">Owner-Panel</option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>_harga</label>
+      <div class="value" id="harga">Rp 1.000</div>
+    </div>
+
+    <div class="buttons">
+      <button class="rpg-btn" onclick="orderWA()">Order via WhatsApp</button>
+      <button class="rpg-btn" onclick="orderTG()">Order via Telegram</button>
+    </div>
+  </div>
+
+  <footer>
+    © 2026 CuxxyzHost — All rights reserved
+  </footer>
+</main>
+
+<script>
+function toggleMenu(){
+  const m=document.getElementById("menu");
+  m.style.display=m.style.display==="block"?"none":"block";
+}
+
+function setHarga(el){
+  document.getElementById("harga").innerText =
+    "Rp " + Number(el.value).toLocaleString("id-ID");
+}
+
+function orderWA(){
+  const produk=document.getElementById("produk").selectedOptions[0].text;
+  const harga=document.getElementById("harga").innerText;
+  const msg=`Hallo saya mau order!
+produk : ${produk}
+harga : ${harga}`;
+  window.open("https://wa.me/6283128490718?text="+encodeURIComponent(msg));
+}
+
+function orderTG(){
+  const produk=document.getElementById("produk").selectedOptions[0].text;
+  const harga=document.getElementById("harga").innerText;
+  const msg=`Hallo saya mau order!
+produk : ${produk}
+harga : ${harga}`;
+  window.open("https://t.me/cuxxyzhost");
+}
+
+/* PARTIKEL */
+const c=document.getElementById("bg"),x=c.getContext("2d");
+let w,h,p=[];
+function rs(){w=c.width=innerWidth;h=c.height=innerHeight}
+window.onresize=rs;rs();
+for(let i=0;i<80;i++)p.push({x:Math.random()*w,y:Math.random()*h,v:Math.random()+.4});
+(function an(){
+  x.clearRect(0,0,w,h);
+  p.forEach(o=>{
+    o.y+=o.v;if(o.y>h)o.y=0;
+    x.fillStyle="#00f7ff";
+    x.fillRect(o.x,o.y,2,2);
+  });
+  requestAnimationFrame(an);
+})();
+</script>
+
+</body>
+</html>
