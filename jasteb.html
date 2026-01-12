@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jasteb Vip | CuxxyzHost</title>
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#020617;
+  --neon:#00f7ff;
+  --neon2:#7c4dff;
+  --text:#e5e7eb;
+  --muted:#9ca3af;
+  --border:#1f2937;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+  font-family:'JetBrains Mono', monospace;
+  background:var(--bg);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+
+/* PARTICLE */
+canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+}
+
+/* HEADER */
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:22px 26px;
+}
+
+.logo{
+  font-family:'Orbitron', sans-serif;
+  font-size:22px;
+  color:var(--neon);
+  text-shadow:0 0 10px var(--neon),0 0 35px var(--neon2);
+  cursor:pointer;
+}
+
+.menu-btn{
+  width:42px;height:42px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+.menu-btn span,
+.menu-btn span::before,
+.menu-btn span::after{
+  content:"";
+  width:18px;height:2px;
+  background:#cbd5f5;
+  position:relative;
+}
+.menu-btn span::before{position:absolute;top:-6px}
+.menu-btn span::after{position:absolute;top:6px}
+
+/* MAIN */
+main{
+  padding:70px 18px 80px;
+  max-width:520px;
+  margin:0 auto;
+  text-align:center;
+}
+
+/* TITLE */
+.main-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:32px;
+  color:var(--neon);
+  text-shadow:0 0 14px var(--neon),0 0 45px var(--neon2);
+  margin-bottom:10px;
+}
+
+.sub-text{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:40px;
+}
+
+/* PRODUCT CARD */
+.card{
+  background:rgba(2,6,23,.75);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:20px;
+  text-align:left;
+}
+
+/* CARD TITLE */
+.card-title{
+  font-family:'Orbitron', sans-serif;
+  font-size:14px;
+  color:var(--neon);
+  text-shadow:0 0 10px var(--neon);
+  margin-bottom:18px;
+}
+
+/* FIELD */
+.field{
+  margin-bottom:16px;
+}
+
+.field-label{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:6px;
+}
+
+.field-box{
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:12px 14px;
+  background:#020617;
+  font-size:14px;
+}
+
+/* CREDIT */
+.credit{
+  margin-top:50px;
+  text-align:center;
+  font-size:12px;
+  color:#6b7280;
+}
+.credit span{
+  display:block;
+  margin-top:6px;
+  font-size:11px;
+  color:#4b5563;
+}
+</style>
+</head>
+<body>
+
+<canvas id="particle"></canvas>
+
+<header>
+  <div class="logo" onclick="location.href='index.html'">./CuxxyzHost</div>
+  <div class="menu-btn"><span></span></div>
+</header>
+
+<main>
+
+  <!-- JUDUL TENGAH -->
+  <div class="main-title">&gt;_ Jasteb-Vip</div>
+  <div class="sub-text">$ Ress murni - berisi - ber ip - city - trusted</div>
+
+  <!-- CARD PRODUK -->
+  <div class="card">
+
+    <div class="card-title">$ ./Jasteb</div>
+
+    <div class="field">
+      <div class="field-label">_produk</div>
+      <div class="field-box">jasteb</div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">_jumlah.produk</div>
+      <div class="field-box">40+ Result</div>
+    </div>
+
+    <div class="field">
+      <div class="field-label">_harga</div>
+      <div class="field-box">Rp 3.000</div>
+    </div>
+
+  </div>
+
+  <div class="credit">
+    © 2026 CuxxyzHost — All rights reserved.
+    <span>Powered by ./CuxxyzHost System</span>
+  </div>
+
+</main>
+
+<script>
+/* PARTICLES */
+const c=document.getElementById("particle"),ctx=c.getContext("2d");
+let w,h,p=[];
+function resize(){w=c.width=innerWidth;h=c.height=innerHeight}
+resize();onresize=resize;
+
+for(let i=0;i<70;i++){
+  p.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5,r:Math.random()*2+1});
+}
+(function draw(){
+  ctx.clearRect(0,0,w,h);
+  ctx.fillStyle="rgba(0,247,255,.4)";
+  p.forEach(o=>{
+    o.x+=o.vx;o.y+=o.vy;
+    if(o.x<0||o.x>w)o.vx*=-1;
+    if(o.y<0||o.y>h)o.vy*=-1;
+    ctx.beginPath();ctx.arc(o.x,o.y,o.r,0,Math.PI*2);ctx.fill();
+  });
+  requestAnimationFrame(draw);
+})();
+</script>
+
+</body>
+</html>
